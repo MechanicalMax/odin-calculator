@@ -85,7 +85,21 @@ function handleInteger(inputInt) {
 // testSendInputToCalculator();
 // testHandleInteger();
 // testOperator("+");
-testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
+// testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
+testOperatorOverwrite();
+
+function testOperatorOverwrite() {
+    numOne = 5;
+    console.log({numOne, operator, numTwo});
+    handleOperator('+');
+    console.log({numOne, operator, numTwo});
+    handleOperator('-');
+    console.log({numOne, operator, numTwo});
+    handleOperator('*');
+    console.log({numOne, operator, numTwo});
+    handleOperator('/');
+    console.log({numOne, operator, numTwo});
+}
 
 function testMixedOperators(operatorList) {
     console.log({numOne, operator, numTwo});
