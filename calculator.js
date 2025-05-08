@@ -84,7 +84,18 @@ function handleInteger(inputInt) {
 // Testing
 // testSendInputToCalculator();
 // testHandleInteger();
-testOperator("+");
+// testOperator("+");
+testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
+
+function testMixedOperators(operatorList) {
+    console.log({numOne, operator, numTwo});
+    operatorList.map((op) => {
+        handleOperator(op);
+        console.log({numOne, operator, numTwo});
+        sendInputToCalculator(2);
+        console.log({numOne, operator, numTwo});
+    })
+}
 
 function testOperator(op) {
     console.log({numOne, operator, numTwo})
