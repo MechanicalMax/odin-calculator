@@ -11,18 +11,30 @@ function sendInputToCalculator(input) {
         handleClear();
     } else if (input === ".") {
         handleDecimal();
-    } else if (input === "+") {
-        handleAdd();
-    } else if (input === "-") {
-        handleSubtract();
-    } else if (input === "*") {
-        handleMultiply();
-    } else if (input === "/") {
-        handleDivide();
+    } else if (/^[-\+\*\/]$/.test(input)) {
+        handleOperator(input);
     } else if (/^[0-9]$/.test(input)) {
         handleInteger(Number(input))
     } else {
         throw new Error("Invalid Calculator Input");
+    }
+}
+
+function executeOperator(a, op, b) {
+    if (a === null || op === null || b === null) {
+        throw new Error("Cannot Execute Operator");
+    }
+    switch (op) {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+            return a * b;
+        case '/':
+            return a / b;
+        default:
+            throw new Error("Invalid Operator");
     }
 }
 
@@ -38,20 +50,17 @@ function handleDecimal() {
     console.log("Decimal .");
 }
 
-function handleAdd() {
-    console.log("Add +");
-}
+function handleOperator(op) {
+    console.log(`Operator ${op}`);
+    if (numOne === null) {
+        return;
+    }
 
-function handleSubtract() {
-    console.log("Subtract -");
-}
-
-function handleMultiply() {
-    console.log("Multiply *");
-}
-
-function handleDivide() {
-    console.log("Divide /");
+    if (numTwo !== null) {
+        numOne = executeOperator(numOne, operator, numTwo);
+        numTwo = null;
+    }
+    operator = op;
 }
 
 function handleInteger(inputInt) {
@@ -74,7 +83,22 @@ function handleInteger(inputInt) {
 
 // Testing
 // testSendInputToCalculator();
-testHandleInteger();
+// testHandleInteger();
+testOperator("+");
+
+function testOperator(op) {
+    console.log({numOne, operator, numTwo})
+    handleOperator(op);
+    console.log({numOne, operator, numTwo})
+    sendInputToCalculator(5);
+    console.log({numOne, operator, numTwo})
+    handleOperator(op);
+    console.log({numOne, operator, numTwo})
+    sendInputToCalculator(6);
+    console.log({numOne, operator, numTwo})
+    handleOperator(op);
+    console.log({numOne, operator, numTwo})
+}
 
 function testHandleInteger() {
     console.log({numOne, operator, numTwo});
