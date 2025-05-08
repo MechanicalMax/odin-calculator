@@ -1,3 +1,5 @@
+const screenSize = 12;
+const maximumNumber = 10**screenSize-1;
 let numOne = null;
 let operator = null;
 let numTwo = null;
@@ -56,11 +58,41 @@ function handleInteger(inputInt) {
     if (inputInt < 0 || inputInt > 9) {
         throw new Error("Invalid Input Integer")
     }
-    console.log(`Integer ${inputInt}`);
+
+    if (numOne === null) {
+        numOne = inputInt;
+    } else if (operator === null) {
+        numOne *= 10;
+        numOne += inputInt;
+    } else if (numTwo === null) {
+        numTwo = inputInt;
+    } else {
+        numTwo *= 10;
+        numTwo += inputInt;
+    }
 }
 
 // Testing
-testSendInputToCalculator();
+// testSendInputToCalculator();
+testHandleInteger();
+
+function testHandleInteger() {
+    console.log({numOne, operator, numTwo});
+    handleInteger(1);
+    console.log({numOne, operator, numTwo});
+    handleInteger(2);
+    console.log({numOne, operator, numTwo});
+    handleInteger(3);
+    console.log({numOne, operator, numTwo});
+    operator = "+";
+    console.log({numOne, operator, numTwo});
+    handleInteger(4);
+    console.log({numOne, operator, numTwo});
+    handleInteger(5);
+    console.log({numOne, operator, numTwo});
+    handleInteger(6);
+    console.log({numOne, operator, numTwo});
+}
 
 function testSendInputToCalculator() {
     sendInputToCalculator('=');
