@@ -59,25 +59,30 @@ function handleInteger(inputInt) {
     console.log(`Integer ${inputInt}`);
 }
 
-sendInputToCalculator('=');
-sendInputToCalculator('C');
-sendInputToCalculator('.');
-sendInputToCalculator('+');
-sendInputToCalculator('-');
-sendInputToCalculator('*');
-sendInputToCalculator('/');
-sendInputToCalculator('0');
-sendInputToCalculator('1');
-sendInputToCalculator('2');
-sendInputToCalculator('3');
-sendInputToCalculator('4');
-sendInputToCalculator('5');
-sendInputToCalculator('6');
-sendInputToCalculator('7');
-sendInputToCalculator('8');
-sendInputToCalculator('9');
-try {
-    sendInputToCalculator('23');
-} catch (error) {
-    console.log('23 is invalid input');
+// Testing
+testSendInputToCalculator();
+
+function testSendInputToCalculator() {
+    sendInputToCalculator('=');
+    sendInputToCalculator('C');
+    sendInputToCalculator('.');
+    sendInputToCalculator('+');
+    sendInputToCalculator('-');
+    sendInputToCalculator('*');
+    sendInputToCalculator('/');
+    sendInputToCalculator('0');
+    sendInputToCalculator('1');
+    sendInputToCalculator('2');
+    sendInputToCalculator('3');
+    sendInputToCalculator('4');
+    sendInputToCalculator('5');
+    sendInputToCalculator('6');
+    sendInputToCalculator('7');
+    sendInputToCalculator('8');
+    sendInputToCalculator('9');
+    try {
+        sendInputToCalculator('23');
+    } catch (error) {
+        console.log('23 is invalid input');
+    }
 }
