@@ -20,7 +20,7 @@ function sendInputToCalculator(input) {
 }
 
 function executeOperator(a, op, b) {
-    if (a === null || op === null || b === null) {
+    if (typeof a !== 'number' || typeof op !== 'string' || typeof b !== 'number') {
         throw new Error("Cannot Execute Operator");
     }
     switch (op) {
@@ -35,6 +35,13 @@ function executeOperator(a, op, b) {
         default:
             throw new Error("Invalid Operator");
     }
+}
+
+function clearCalculator(displayAfterClear = "") {
+    numOne = null;
+    operator = null;
+    numTwo = null;
+    display = displayAfterClear;
 }
 
 function determineDisplayOutput(num, screenSize=12) {
@@ -55,11 +62,13 @@ function determineDisplayOutput(num, screenSize=12) {
 }
 
 function handleOperate() {
-    console.log("Operate =");
+    if (numOne !== null && operator !== null && numTwo !== null) {
+        clearCalculator(determineDisplayOutput(executeOperator(numOne, operator, numTwo)));
+    }
 }
 
 function handleClear() {
-    console.log("Clear C");
+    clearCalculator();
 }
 
 function handleDecimal() {
@@ -103,7 +112,7 @@ function handleInteger(inputInt) {
 // testOperator("+");
 // testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
 // testOperatorOverwrite();
-testDisplayOutput();
+// testDisplayOutput();
 
 function testDisplayOutput() {
     tests = [
