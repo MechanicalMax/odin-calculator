@@ -63,7 +63,11 @@ function determineDisplayOutput(num, screenSize=12) {
 
 function handleOperate() {
     if (numOne !== null && operator !== null && numTwo !== null) {
-        clearCalculator(determineDisplayOutput(executeOperator(numOne, operator, numTwo)));
+        clearCalculator(determineDisplayOutput(executeOperator(
+            Number.parseFloat(numOne),
+            operator,
+            Number.parseFloat(numTwo)
+        )));
     }
 }
 
@@ -72,17 +76,28 @@ function handleClear() {
 }
 
 function handleDecimal() {
-    console.log("Decimal .");
+    if (numOne !== null && !numOne.includes('.')) {
+        numOne += '.';
+        return;
+    }
+
+    if (numTwo !== null && !numTwo.includes('.')) {
+        numTwo += '.';
+        return;
+    }
 }
 
 function handleOperator(op) {
-    console.log(`Operator ${op}`);
     if (numOne === null) {
         return;
     }
 
     if (numTwo !== null) {
-        numOne = executeOperator(numOne, operator, numTwo);
+        numOne = String.parseFloat(executeOperator(
+            Number.parseFloat(numOne),
+            operator,
+            Number.parseFloat(numTwo)
+        ));
         numTwo = null;
     }
     operator = op;
@@ -94,15 +109,13 @@ function handleInteger(inputInt) {
     }
 
     if (numOne === null) {
-        numOne = inputInt;
+        numOne = `${inputInt}`;
     } else if (operator === null) {
-        numOne *= 10;
-        numOne += inputInt;
+        numOne += `${inputInt}`;
     } else if (numTwo === null) {
-        numTwo = inputInt;
+        numTwo = `${inputInt}`;
     } else {
-        numTwo *= 10;
-        numTwo += inputInt;
+        numTwo += `${inputInt}`;
     }
 }
 
@@ -113,6 +126,29 @@ function handleInteger(inputInt) {
 // testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
 // testOperatorOverwrite();
 // testDisplayOutput();
+testAddDecimal();
+
+function testAddDecimal() {
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator('.');
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator(3);
+    sendInputToCalculator('.');
+    sendInputToCalculator(4);
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator('.');
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator('+');
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator(5);
+    sendInputToCalculator('.');
+    sendInputToCalculator(6);
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator('.');
+    console.log({numOne, operator, numTwo});
+    sendInputToCalculator('=');
+    console.log({display});
+}
 
 function testDisplayOutput() {
     tests = [
