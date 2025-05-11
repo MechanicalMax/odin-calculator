@@ -1,8 +1,7 @@
-const screenSize = 12;
-const maximumNumber = 10**screenSize-1;
 let numOne = null;
 let operator = null;
 let numTwo = null;
+let display = "";
 
 function sendInputToCalculator(input) {
     if (input === "=") {
@@ -36,6 +35,23 @@ function executeOperator(a, op, b) {
         default:
             throw new Error("Invalid Operator");
     }
+}
+
+function determineDisplayOutput(num, screenSize=12) {
+    if (typeof num !== 'number') {
+        return "NaN".padStart(screenSize);
+    }
+    
+    const numString = `${num}`;
+    
+    if (numString.length > screenSize) {
+        if (!numString.includes(".")) {
+            return "Overflow".padStart(screenSize);
+        }
+        return numString.slice(0, screenSize);
+    }
+
+    return numString.padStart(screenSize);
 }
 
 function handleOperate() {
@@ -86,7 +102,32 @@ function handleInteger(inputInt) {
 // testHandleInteger();
 // testOperator("+");
 // testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
-testOperatorOverwrite();
+// testOperatorOverwrite();
+testDisplayOutput();
+
+function testDisplayOutput() {
+    tests = [
+        "awerw",
+        "123",
+        123,
+        123456123456,
+        1234561234561,
+        -23456123456,
+        -234561234561,
+        123.456,
+        123456.23456,
+        123456.234569,
+        -23456.23456,
+        -23456.234561,
+        12345612345.,
+        12345612345.1,
+        123456123456.,
+    ]
+    tests.forEach(element => {
+        console.log(element);
+        console.log(determineDisplayOutput(element));
+    });
+}
 
 function testOperatorOverwrite() {
     numOne = 5;
