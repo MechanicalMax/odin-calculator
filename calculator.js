@@ -3,6 +3,25 @@ let operator = null;
 let numTwo = null;
 let display = "";
 
+createCalculatorInTarget("main")
+
+function createCalculatorInTarget(cssSelector) {
+    const container = document.querySelector(cssSelector);
+    if (container === null) {
+        throw new Error("Calculator Target Container Not Found.");
+    }
+
+    const calcContainer = document.createElement("article");
+    calcContainer.classList.add("calculator")
+
+    const calcDisplay = document.createElement("p");
+    calcDisplay.textContent = "Hello!";
+    calcContainer.appendChild(calcDisplay);
+
+
+    container.appendChild(calcContainer);
+}
+
 function sendInputToCalculator(input) {
     const originalDisplay = display;
     if (input === "=") {
@@ -145,7 +164,7 @@ function handleInteger(inputInt, screenSize=12) {
 // testOperatorOverwrite();
 // testDisplayOutput();
 // testAddDecimal();
-consoleCalc();
+// consoleCalc();
 
 function consoleCalc() {
     let input = prompt("Calc Input:");
