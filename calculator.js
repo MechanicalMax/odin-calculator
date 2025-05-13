@@ -15,8 +15,27 @@ function createCalculatorInTarget(cssSelector) {
     calcContainer.classList.add("calculator")
 
     const calcDisplay = document.createElement("p");
+    calcDisplay.classList.add("display");
     calcDisplay.textContent = "Hello!";
     calcContainer.appendChild(calcDisplay);
+
+    let buttonSymbols = ["=", ".", "C", "+", "-", "*", "/"];
+    for (let i = 0; i < 10; i++) {
+        buttonSymbols.push(`${i}`);
+    }
+    buttonSymbols.forEach(
+        (symbol) => {
+            const button = document.createElement("button");
+            button.classList.add(symbol);
+            button.textContent = symbol;
+            button.setAttribute("type", "button");
+            button.addEventListener("click", (e) => {
+                sendInputToCalculator(symbol);
+                calcDisplay.textContent = display;
+            })
+            calcContainer.appendChild(button);
+        }
+    )
 
 
     container.appendChild(calcContainer);
