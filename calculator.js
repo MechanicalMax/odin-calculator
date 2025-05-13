@@ -4,6 +4,7 @@ let numTwo = null;
 let display = "";
 
 function sendInputToCalculator(input) {
+    const originalDisplay = display;
     if (input === "=") {
         handleOperate();
     } else if (input === "C") {
@@ -17,6 +18,19 @@ function sendInputToCalculator(input) {
     } else {
         throw new Error("Invalid Calculator Input");
     }
+    if (originalDisplay === display) {
+        display = deriveDisplay();
+    }
+}
+
+function deriveDisplay(screenSize=12) {
+    if (numTwo !== null) {
+        return numTwo.padStart(screenSize);
+    }
+    if (numOne !== null) {
+        return numOne.padStart(screenSize);
+    }
+    return "".padStart(screenSize);
 }
 
 function executeOperator(a, op, b) {
@@ -93,7 +107,7 @@ function handleOperator(op) {
     }
 
     if (numTwo !== null) {
-        numOne = String.parseFloat(executeOperator(
+        numOne = Number.toString(executeOperator(
             Number.parseFloat(numOne),
             operator,
             Number.parseFloat(numTwo)
@@ -103,7 +117,7 @@ function handleOperator(op) {
     operator = op;
 }
 
-function handleInteger(inputInt) {
+function handleInteger(inputInt, screenSize=12) {
     if (inputInt < 0 || inputInt > 9) {
         throw new Error("Invalid Input Integer")
     }
@@ -111,11 +125,15 @@ function handleInteger(inputInt) {
     if (numOne === null) {
         numOne = `${inputInt}`;
     } else if (operator === null) {
-        numOne += `${inputInt}`;
+        if (numOne.length < screenSize) {
+            numOne += `${inputInt}`;
+        }
     } else if (numTwo === null) {
         numTwo = `${inputInt}`;
     } else {
-        numTwo += `${inputInt}`;
+        if (numTwo.length < screenSize) {
+            numTwo += `${inputInt}`;
+        }
     }
 }
 
@@ -126,7 +144,18 @@ function handleInteger(inputInt) {
 // testMixedOperators(['+', '+', '*', '-', '*', '-', '/', '/']);
 // testOperatorOverwrite();
 // testDisplayOutput();
-testAddDecimal();
+// testAddDecimal();
+consoleCalc();
+
+function consoleCalc() {
+    let input = prompt("Calc Input:");
+    while (input !== "exit") {
+        sendInputToCalculator(input);
+        console.log({numOne, operator, numTwo});
+        console.log(`|${display}|`);
+        input = prompt("Calc Input:");
+    }
+}
 
 function testAddDecimal() {
     console.log({numOne, operator, numTwo});
