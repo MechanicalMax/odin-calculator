@@ -4,6 +4,9 @@
     max-width: 80%;
     margin: auto;
     font-family: monospace;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
 }
 
 .calculator .display {
@@ -14,6 +17,7 @@
     color: green;
     padding: 5px;
     min-height: 1rem;
+    grid-column: 1/-1;
 }
 
 .calculator button {

@@ -16,11 +16,10 @@ function createCalculatorInTarget(cssSelector) {
 
     const calcDisplay = document.createElement("p");
     calcDisplay.classList.add("display");
-    calcDisplay.style.gridArea = "display";
     calcDisplay.textContent = "";
     calcContainer.appendChild(calcDisplay);
 
-    let buttonSymbols = ["=", ".", "C", "+", "-", "*", "/"];
+    let buttonSymbols = ["C", "/", "*", "-", "+", ".","="];
     for (let i = 0; i < 10; i++) {
         buttonSymbols.push(`${i}`);
     }
