@@ -1,0 +1,24 @@
+.calculator {
+    background-color: green;
+    min-width: 300px;
+    max-width: 80%;
+    margin: auto;
+    font-family: monospace;
+}
+
+.calculator .display {
+    text-align: center;
+    font-weight: bold;
+    border: solid rgb(1, 66, 1) 5px;
+    background-color: lightgoldenrodyellow;
+    color: green;
+    padding: 5px;
+    min-height: 1rem;
+}
+
+.calculator button {
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    padding: 0px;
+}

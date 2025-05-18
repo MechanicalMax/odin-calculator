@@ -16,7 +16,8 @@ function createCalculatorInTarget(cssSelector) {
 
     const calcDisplay = document.createElement("p");
     calcDisplay.classList.add("display");
-    calcDisplay.textContent = "Hello!";
+    calcDisplay.style.gridArea = "display";
+    calcDisplay.textContent = "";
     calcContainer.appendChild(calcDisplay);
 
     let buttonSymbols = ["=", ".", "C", "+", "-", "*", "/"];
