@@ -1,7 +1,7 @@
 .calculator {
     background-color: green;
-    width: 300px;
-    height: 500px;
+    width: 250px;
+    height: 400px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -33,6 +33,10 @@
     border: solid rgb(1, 66, 1) 5px;
     background-color: lightgoldenrodyellow;
     margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .calculator button {

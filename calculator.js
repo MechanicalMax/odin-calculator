@@ -14,10 +14,12 @@ function createCalculatorInTarget(cssSelector) {
     const calcContainer = document.createElement("article");
     calcContainer.classList.add("calculator")
 
+    const calcDisplayContainer = document.createElement("div");
     const calcDisplay = document.createElement("p");
-    calcDisplay.classList.add("display");
+    calcDisplayContainer.classList.add("display");
     calcDisplay.textContent = "";
-    calcContainer.appendChild(calcDisplay);
+    calcDisplayContainer.appendChild(calcDisplay);
+    calcContainer.appendChild(calcDisplayContainer);
 
     const buttonInfo = new Map();
     buttonInfo.set("clear", "C");
