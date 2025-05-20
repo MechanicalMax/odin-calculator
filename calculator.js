@@ -62,7 +62,7 @@ function createCalculatorInTarget(cssSelector) {
 function sendInputToCalculator(input) {
     const originalDisplay = display;
     if (input === "=") {
-        handleOperate();
+        handleOperate(screenSize=10);
     } else if (input === "C") {
         handleClear();
     } else if (input === ".") {
@@ -70,21 +70,21 @@ function sendInputToCalculator(input) {
     } else if (/^[-\+\*\/]$/.test(input)) {
         handleOperator(input);
     } else if (/^[0-9]$/.test(input)) {
-        handleInteger(Number(input))
+        handleInteger(Number(input), screenSize=10)
     } else {
         throw new Error("Invalid Calculator Input");
     }
     if (originalDisplay === display) {
-        display = deriveDisplay();
+        display = deriveDisplay(screenSize=10);
     }
 }
 
-function deriveDisplay(screenSize=12) {
+function deriveDisplay(screenSize) {
     if (numTwo !== null) {
-        return numTwo.padStart(screenSize);
+        return determineDisplayOutput(numTwo, screenSize);
     }
     if (numOne !== null) {
-        return numOne.padStart(screenSize);
+        return determineDisplayOutput(numOne, screenSize);
     }
     return "".padStart(screenSize);
 }
@@ -114,11 +114,7 @@ function clearCalculator(displayAfterClear = "") {
     display = displayAfterClear;
 }
 
-function determineDisplayOutput(num, screenSize=12) {
-    if (typeof num !== 'number') {
-        return "NaN".padStart(screenSize);
-    }
-    
+function determineDisplayOutput(num, screenSize) {
     const numString = `${num}`;
     
     if (numString.length > screenSize) {
@@ -131,13 +127,15 @@ function determineDisplayOutput(num, screenSize=12) {
     return numString.padStart(screenSize);
 }
 
-function handleOperate() {
+function handleOperate(screenSize) {
     if (numOne !== null && operator !== null && numTwo !== null) {
         clearCalculator(determineDisplayOutput(executeOperator(
             Number.parseFloat(numOne),
             operator,
             Number.parseFloat(numTwo)
-        )));
+        ),
+        screenSize
+    ));
     }
 }
 
@@ -169,7 +167,7 @@ function handleOperator(op) {
     operator = op;
 }
 
-function handleInteger(inputInt, screenSize=12) {
+function handleInteger(inputInt, screenSize) {
     if (inputInt < 0 || inputInt > 9) {
         throw new Error("Invalid Input Integer")
     }
