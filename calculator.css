@@ -3,7 +3,6 @@
     width: 300px;
     height: 500px;
     margin: auto;
-    font-family: monospace;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
@@ -17,19 +16,25 @@
         "zero zero decimal operate";
     gap: 10px;
     padding: 10px;
+    border-radius: 5px;
+}
+
+.calculator .display,
+.calculator button {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-weight: bold;
+    color: green;
+    font-size: 40px;
 }
 
 .calculator .display {
     grid-area: display;
-    text-align: center;
-    font-weight: bold;
     border: solid rgb(1, 66, 1) 5px;
     background-color: lightgoldenrodyellow;
-    color: green;
-    padding: 5px;
-    min-height: 1rem;
+    margin: 0px;
 }
 
 .calculator button {
-
+    background-color: rgb(255, 255, 230);
 }
