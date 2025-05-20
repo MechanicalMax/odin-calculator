@@ -19,14 +19,30 @@ function createCalculatorInTarget(cssSelector) {
     calcDisplay.textContent = "";
     calcContainer.appendChild(calcDisplay);
 
-    let buttonSymbols = ["C", "/", "*", "-", "+", ".","="];
-    for (let i = 0; i < 10; i++) {
-        buttonSymbols.push(`${i}`);
-    }
-    buttonSymbols.forEach(
-        (symbol) => {
+    const buttonInfo = new Map();
+    buttonInfo.set("clear", "C");
+    buttonInfo.set("divide", "/");
+    buttonInfo.set("multiply", "*");
+    buttonInfo.set("subtract", "-");
+    buttonInfo.set("add", "+");
+    buttonInfo.set("operate", "=");
+    buttonInfo.set("decimal", ".");
+    buttonInfo.set("zero", "0");
+    buttonInfo.set("one", "1");
+    buttonInfo.set("two", "2");
+    buttonInfo.set("three", "3");
+    buttonInfo.set("four", "4");
+    buttonInfo.set("five", "5");
+    buttonInfo.set("six", "6");
+    buttonInfo.set("seven", "7");
+    buttonInfo.set("eight", "8");
+    buttonInfo.set("nine", "9");
+
+    buttonInfo.forEach(
+        (symbol, buttonLabel) => {
             const button = document.createElement("button");
-            button.classList.add(symbol);
+            button.classList.add(buttonLabel);
+            button.style.gridArea = buttonLabel;
             button.textContent = symbol;
             button.setAttribute("type", "button");
             button.addEventListener("click", (e) => {

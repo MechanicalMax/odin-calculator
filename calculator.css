@@ -7,9 +7,18 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        "display display display display"
+        "display display display display"
+        "clear divide multiply subtract"
+        "seven eight nine add"
+        "four five six add"
+        "one two three operate"
+        "zero zero decimal operate";
 }
 
 .calculator .display {
+    grid-area: display;
     text-align: center;
     font-weight: bold;
     border: solid rgb(1, 66, 1) 5px;
@@ -17,12 +26,8 @@
     color: green;
     padding: 5px;
     min-height: 1rem;
-    grid-column: 1/-1;
 }
 
 .calculator button {
-    width: 50px;
-    height: 50px;
-    margin: 0px;
-    padding: 0px;
+    padding: 5px;
 }
