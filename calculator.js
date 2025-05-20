@@ -163,11 +163,7 @@ function handleOperator(op) {
     }
 
     if (numTwo !== null) {
-        numOne = Number.toString(executeOperator(
-            Number.parseFloat(numOne),
-            operator,
-            Number.parseFloat(numTwo)
-        ));
+        numOne = `${executeOperator(Number.parseFloat(numOne), operator, Number.parseFloat(numTwo))}`;
         numTwo = null;
     }
     operator = op;
