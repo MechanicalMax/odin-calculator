@@ -3,6 +3,9 @@ A four-function calculator with js
 
 https://www.theodinproject.com/lessons/foundations-calculator
 
+## Installation
+Link calculator.css and calculator.js to your html file, and change the configuration settings in calculator.js. Remember the license :)
+
 ## Goals
 - Functions
     - Add
